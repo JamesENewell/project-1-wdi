@@ -1,0 +1,52 @@
+header {
+  color: white;
+  height: 25px;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 100px;
+  font-size: 100px;
+}
+
+body {
+  height: 1000px;
+  text-align: center;
+  background-image: url(http://musamexico.org/wp-content/uploads/2015/07/Time-Bomb-Mines-Underwater-Sculpture-Jason-DeCaires-Taylor.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#board {
+  margin-top: 80px;
+  margin-left: 30px;
+  text-align: center ;
+}
+
+.col {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  background-color: #d3d3d3;
+  border: 1px solid black;
+  vertical-align: top;
+  font-size: 35px;
+  line-height: 40px;
+  transition-duration: 5s;
+}
+
+.col.hidden {
+  background-color: white;
+  border: 1px solid darkGrey;
+  padding-right: 20px;
+}
+
+#result {
+  margin-top: 25px;
+  background-color: white;
+  width: auto;
+  font-size: 50px;
+  padding-right: 20px;
+}
+
+/* .mine {
+  background-color: blue
+}  */
