@@ -3,10 +3,22 @@ $(()=>{
   const loss = new Audio('./sounds/Depth Charge-SoundBible.mp3');
   const winning = new Audio('./sounds/Kids Cheering-SoundBible.mp3');
   let mines = 0;
-  let win;
-  let gameOver;
+  // let win;
+  // let gameOver;
   let totalMines;
+  let remainingTiles;
 
+
+
+
+  // Check for click events on the navbar burger icon
+  $('.navbar-burger').click(function() {
+
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    $('.navbar-burger').toggleClass('is-active');
+    $('.navbar-menu').toggleClass('is-active');
+
+  });
 
 
   const $board = $('#board');
@@ -17,6 +29,11 @@ $(()=>{
   // create levels function to change amount of ROWS + COLUMNS in game
   const rows = 10;
   const cols = 10;
+
+  $('#new-game').click(function() {
+    console.log('New Game has been clicked');
+    restart();
+  });
 
   //creates the board by creating a row for the value of row; then creating columns inside them for the value of cols
   function drawBoard(rows, cols) {
@@ -33,7 +50,7 @@ $(()=>{
           $col.addClass('mine');
           mines ++;
           totalMines = mines;
-          console.log(mines, totalMines);
+          console.log(totalMines);
         }
         $row.append($col);
       }
@@ -51,17 +68,16 @@ $(()=>{
   }
 
   function gameCondition(gameOver) {
-    console.log('running');
     let icon = null;
     if (gameOver === 'win'){
-      console.log('win condition');
+      icon = 'fa fa-flag';
       $result.text('Congratulations You Won!');
       winning.play();
     } else if (gameOver === 'lose') {
       icon = 'fa fa-bomb';
       $result.text('Better Luck Next Time, You Lost!');
       loss.play();
-      $board.delay(2500).fadeOut(2500);
+      // $board.delay(2500).fadeOut(2500);
     }
     $('.col.mine').append(
       $('<i>').addClass(icon)
@@ -76,9 +92,9 @@ $(()=>{
         return count === 0 ? '' : count;
       });
     $('.col.hidden').removeClass('hidden');
-    setTimeout(function() {
-      restart();
-    }, 5000);
+    // setTimeout(function() {
+    //   restart();
+    // }, 5000);
   }
 
 
@@ -147,29 +163,37 @@ $(()=>{
     const $cell = $(this);
     const row = $cell.data('row');
     const col = $cell.data('col');
-    let remainingMines = $('.hidden').length;
-
+    console.log(totalMines);
+    // let remainingTiles = $('.hidden').length;
+    // console.log(remainingTiles);
 
     if ($cell.hasClass('mine')) {
       gameCondition('lose');
-    } else if ((remainingMines --) === totalMines){
-      gameCondition('win');
     } else {
       reveal(row, col);
-      console.log(remainingMines, totalMines);
-
+      remainingTiles = $('.hidden').length;
+      console.log(remainingTiles);
     }
+
+    if ((remainingTiles --) === totalMines){
+      console.log('you win!');
+      gameCondition('win');
+    }
+
   });
 
 
-  $board.on('contextmenu', function(e) {
-    e.preventDefault();
+  $board.on('contextmenu', '.col.hidden', function(e) {
+    const $cell = $(this);
+    event.preventDefault();
     // console.log(e.target);
     const icon = 'fa fa-flag';
-    $(e.target).append($('<i>').addClass(icon)).addClass('flag');
 
-  }
-  );
+    if ($cell.hasClass('hidden')) {
+      $(e.target).append($('<i>').addClass(icon)).addClass('flag');
+
+    }
+  });
 
 
   restart();

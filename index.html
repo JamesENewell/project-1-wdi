@@ -11,10 +11,30 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/style.css">
 </head>
-<header>
-  <h1>Minesweeper</h1>
-</header>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="#">
+      <img src="https://png2.kisspng.com/sh/d8d3521aad4aad3936d632477ab375f8/L0KzQYm3VsE3N6F2jJH0aYP2gLBuTfNwdaF6jNd7LXnmf7B6Tflkd58yfNd8aXfxPbTzigAuaaN5Rd9ybnX2h7bskPVzNWZnSqdtNnK6QrO5WME2NmQ9UKQAMkG5QYa5WcIxPmU6TaMCNkixgLBu/kisspng-computer-icons-icon-design-clip-art-minesweeper-5b25d6b72b2815.3882521615292064551768.png">
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item" id="new-game">New Game</div>
+      <div class="navbar-item">Rules</div>
+    </div>
+
+
+  </div>
+</nav>
 <body>
+  <h1>Minesweeper</h1>
   <div id="board"></div>
   <div id="result"></div>
 </body>
